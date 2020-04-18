@@ -1,6 +1,6 @@
--- DROP TABLE tickets;
+DROP TABLE tickets;
 DROP TABLE films;
--- DROP TABLE customers;
+DROP TABLE customers;
 
 CREATE TABLE films(
     id SERIAL PRIMARY KEY,
@@ -8,14 +8,14 @@ CREATE TABLE films(
     price INT
 );
 
--- CREATE TABLE customers(
---     id SERIAL PRIMARY KEY,
---     first_name VARCHAR(255)
---     funds INT
--- );
+CREATE TABLE customers(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(255),
+    funds INT
+);
 
--- CREATE TABLE tickets(
---     id SERIAL PRIMARY KEY,
---     film_id INT REFERENCES films(id) ON DELETE CASCADE,
---     customer_id INT REFERENCES customers(id) ON DELETE CASCADE
--- );
+CREATE TABLE tickets(
+    id SERIAL PRIMARY KEY,
+    film_id INT REFERENCES films(id) ON DELETE CASCADE,
+    customer_id INT REFERENCES customers(id) ON DELETE CASCADE
+);
