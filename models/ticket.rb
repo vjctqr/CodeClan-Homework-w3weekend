@@ -5,7 +5,7 @@ class Ticket
     attr_reader :id
     attr_accessor :customer_id, :film_id
 
-    def intialize( option )
+    def initialize( options )
         @id = options['id'] if options['id']
         @customer_id = options['customer_id']
         @film_id = options['film_id']
@@ -39,7 +39,7 @@ class Ticket
     end
 
     def self.map_items(ticket_data)
-        return tickets.map{ |ticket| Ticket.new(ticket) }
+        return ticket_data.map{ |ticket| Ticket.new(ticket) }
     end
 
 

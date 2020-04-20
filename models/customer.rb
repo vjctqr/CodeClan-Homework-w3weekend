@@ -20,40 +20,43 @@ class Customer
     end
 
     def update()
-        sql = "UPDATE customers set (name, finds) = ($1, $2) WHERE id = $3"
+        sql = "UPDATE customers set (name, funds) = ($1, $2) WHERE id = $3"
         values = [@name, @funds, @id]
         SqlRunner.run(sql, values)
     end
 
-    # def delete()
-    #     sql = "DELETE from customers where id = $1"
-    #     values = [@id]
-    #     SqlRunner.run(sql, values)
-    # end
+    def delete()
+        sql = "DELETE from customers where id = $1"
+        values = [@id]
+        SqlRunner.run(sql, values)
+    end
 
     def films()
-        sql = "SELECT films.* FROM films INNER JOIN tickets ON tickets.film_id = film.id WHERE customer_id = $1"
+        sql = "SELECT films.* FROM films 
+        INNER JOIN tickets 
+        ON tickets.film_id = films.id 
+        WHERE customer_id = $1"
         values = [@id]
         films = SqlRunner.run(sql, values)
         return Film.map_items(films)
     end
 
     def tickets()
-        sql = "SELECT * FROM tickets WHERE tickets.customer_id =$1"
+        sql = "SELECT * FROM tickets WHERE tickets.customer_id = $1"
         values = [@id]
-        tickets = SqlRunner.run(sql. values)
+        tickets = SqlRunner.run(sql, values)
         return Ticket.map_items(tickets)
     end
 
-    def purchase_ticket(film)
-        ticket = Ticket.new( { 'customer_id' => @id, 'film_id' => film.id } )
-        ticket.save()
-        funds = @funds.to_i
-        price = film.price.to_i
-        @funds = (funds - price).to_s
-        @no_of_tickets += 1
-        update()
-    end
+    # def purchase_ticket(film)
+    #     ticket = Ticket.new( { 'customer_id' => @id, 'film_id' => film.id } )
+    #     ticket.save()
+    #     funds = @funds.to_i
+    #     price = film.price.to_i
+    #     @funds = (funds - price).to_s
+    #     @no_of_tickets += 1
+    #     update()
+    # end
 
     def self.all()
         sql = "SELECT * FROM customers"
