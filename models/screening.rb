@@ -12,7 +12,7 @@ class Screening
     end
 
     def save()
-        sql = "INSERT INTO screening
+        sql = "INSERT INTO screenings
         (film_id, show_time)
         VALUES
         ($1, $2)

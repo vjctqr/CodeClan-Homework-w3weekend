@@ -24,8 +24,8 @@ film5.save()
 
 screening1 = Screening.new( { 'film_id' => film1.id, 'show_time' => '20:00' } )
 screening2 = Screening.new( { 'film_id' => film1.id, 'show_time' => '21:00' } )
-screening1.save()
-screening2.save()
+# screening1.save()
+# screening2.save()
 
 customer1 = Customer.new( {'name' => 'Tim', 'funds' => 300 } )
 customer2 = Customer.new( {'name' => 'Max', 'funds' => 250} )
